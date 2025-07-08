@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import AuthPage from './pages/AuthPage';
 import AssessmentPage from './pages/AssessmentPage';
 import RoadmapPage from './pages/RoadmapPage';
+import LandingPage from './pages/LandingPage';
 
 export default function App() {
     const [userInfo, setUserInfo] = useState(null);
@@ -51,6 +52,7 @@ export default function App() {
 
     return (
         <Routes>
+            <Route path="/landingpage" element={<LandingPage />} />
             <Route path="/login" element={
                 userInfo ? <Navigate to="/assessment" /> : <AuthPage onLoginSuccess={handleLoginSuccess} />
             } />
@@ -80,6 +82,8 @@ export default function App() {
                 </ProtectedRoute>
             } />
 
+            {/* Default route redirects to /landingpage */}
+            <Route path="/" element={<Navigate to="/landingpage" />} />
             {/* Default route redirects to login or assessment based on auth state */}
             <Route path="*" element={<Navigate to={userInfo ? "/assessment" : "/login"} />} />
         </Routes>
