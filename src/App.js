@@ -4,6 +4,7 @@ import AuthPage from './pages/AuthPage';
 import AssessmentPage from './pages/AssessmentPage';
 import RoadmapPage from './pages/RoadmapPage';
 import LandingPage from './pages/LandingPage';
+import LandingPage2 from './pages/LandingPage2';
 
 export default function App() {
     const [userInfo, setUserInfo] = useState(null);
@@ -53,6 +54,7 @@ export default function App() {
     return (
         <Routes>
             <Route path="/landingpage" element={<LandingPage />} />
+            <Route path="/landingpage2" element={<LandingPage2 />} />
             <Route path="/login" element={
                 userInfo ? <Navigate to="/assessment" /> : <AuthPage onLoginSuccess={handleLoginSuccess} />
             } />
