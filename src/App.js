@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
 import AuthPage from './pages/AuthPage';
 import AssessmentPage from './pages/AssessmentPage';
 import RoadmapPage from './pages/RoadmapPage';
@@ -20,19 +21,19 @@ export default function App() {
     const handleLoginSuccess = (userData) => {
         localStorage.setItem('bpo_tech_bridge_user', JSON.stringify(userData));
         setUserInfo(userData);
-        navigate('/assessment'); // Navigate to assessment after login
+        navigate('/assessment');
     };
 
     const handleLogout = () => {
         localStorage.removeItem('bpo_tech_bridge_user');
         setUserInfo(null);
         setRoadmapData(null);
-        navigate('/login'); // Navigate to login after logout
+        navigate('/'); // Navigate to landing page on logout
     };
     
     const handleAssessmentComplete = (data) => {
         setRoadmapData(data);
-        navigate('/roadmap'); // Navigate to roadmap after assessment
+        navigate('/roadmap');
     };
     
     const handleReset = () => {
@@ -43,7 +44,6 @@ export default function App() {
     // A component to protect routes that require authentication
     const ProtectedRoute = ({ children }) => {
         if (!userInfo) {
-            // If user is not logged in, redirect to the login page
             return <Navigate to="/login" replace />;
         }
         return children;
@@ -51,6 +51,8 @@ export default function App() {
 
     return (
         <Routes>
+            <Route path="/" element={<LandingPage />} />
+            
             <Route path="/login" element={
                 userInfo ? <Navigate to="/assessment" /> : <AuthPage onLoginSuccess={handleLoginSuccess} />
             } />
@@ -80,8 +82,8 @@ export default function App() {
                 </ProtectedRoute>
             } />
 
-            {/* Default route redirects to login or assessment based on auth state */}
-            <Route path="*" element={<Navigate to={userInfo ? "/assessment" : "/login"} />} />
+            {/* Fallback route */}
+            <Route path="*" element={<Navigate to="/" />} />
         </Routes>
     );
 }
