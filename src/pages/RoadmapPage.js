@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
 
 // --- Helper Icon Component ---
@@ -264,8 +265,9 @@ function DashboardHub({ userInfo }) {
 // --- Main RoadmapPage Component ---
 export default function RoadmapPage({ roadmapData, onReset, onLogout, userInfo }) {
     const [activeTab, setActiveTab] = useState('roadmap');
-    const { careerTitle, description, modules } = roadmapData.roadmap;
+    const { careerTitle, description, reason, modules, salary_range_php } = roadmapData;
     const [currentModule, setCurrentModule] = useState(0);
+    const navigate = useNavigate();
 
     const TabButton = ({ tabName, iconPath, children }) => (
         <button
@@ -331,6 +333,9 @@ export default function RoadmapPage({ roadmapData, onReset, onLogout, userInfo }
                         <div className="text-2xl font-bold text-blue-600">BPO Tech Bridge AI</div>
                          <div className="flex items-center space-x-4">
                              <span className="text-sm text-gray-500 hidden sm:block">Welcome, {userInfo.email}</span>
+                             <button onClick={() => navigate('/roadmap-selection')} className="text-sm font-medium text-gray-600 hover:text-blue-600">
+                               Back to Options
+                            </button>
                             <button onClick={onReset} className="text-sm font-medium text-gray-600 hover:text-blue-600">
                                Start New Assessment
                             </button>
@@ -341,9 +346,10 @@ export default function RoadmapPage({ roadmapData, onReset, onLogout, userInfo }
             </header>
             <main className="py-10">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <p className="text-blue-600 font-semibold">Your AI-Generated Path from: <span className="font-bold">{roadmapData.assessment.jobTitle}</span></p>
                     <h1 className="mt-2 text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">{careerTitle}</h1>
+                    <p className="text-lg font-semibold text-gray-700 mt-2">{salary_range_php}</p>
                     <p className="mt-4 text-lg text-gray-700 max-w-3xl">{description}</p>
+                    <p className="mt-4 text-lg text-gray-700 max-w-3xl font-semibold">{reason}</p>
                     
                     <div className="my-8 border-b-2 border-gray-200">
                         <div className="flex space-x-2 sm:space-x-4">

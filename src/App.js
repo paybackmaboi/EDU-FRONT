@@ -4,10 +4,12 @@ import LandingPage from './pages/LandingPage';
 import AuthPage from './pages/AuthPage';
 import AssessmentPage from './pages/AssessmentPage';
 import RoadmapPage from './pages/RoadmapPage';
+import RoadmapSelectionPage from './pages/RoadmapSelectionPage';
 
 export default function App() {
     const [userInfo, setUserInfo] = useState(null);
-    const [roadmapData, setRoadmapData] = useState(null);
+    const [roadmapOptions, setRoadmapOptions] = useState([]);
+    const [selectedRoadmap, setSelectedRoadmap] = useState(null);
     const navigate = useNavigate();
 
     // Check for logged-in user on initial load
@@ -27,17 +29,23 @@ export default function App() {
     const handleLogout = () => {
         localStorage.removeItem('bpo_tech_bridge_user');
         setUserInfo(null);
-        setRoadmapData(null);
+        setRoadmapOptions([]);
+        setSelectedRoadmap(null);
         navigate('/'); // Navigate to landing page on logout
     };
     
     const handleAssessmentComplete = (data) => {
-        setRoadmapData(data);
-        navigate('/roadmap');
+        setRoadmapOptions(data.roadmaps);
+        navigate('/roadmap-selection');
+    };
+
+    const handleSelectRoadmap = (roadmap) => {
+        setSelectedRoadmap(roadmap);
     };
     
     const handleReset = () => {
-        setRoadmapData(null);
+        setRoadmapOptions([]);
+        setSelectedRoadmap(null);
         navigate('/assessment');
     }
 
@@ -67,17 +75,27 @@ export default function App() {
                 </ProtectedRoute>
             } />
 
+            <Route path="/roadmap-selection" element={
+                <ProtectedRoute>
+                    <RoadmapSelectionPage
+                        roadmaps={roadmapOptions}
+                        onSelectRoadmap={handleSelectRoadmap}
+                        onLogout={handleLogout}
+                    />
+                </ProtectedRoute>
+            } />
+
             <Route path="/roadmap" element={
                 <ProtectedRoute>
-                    {roadmapData ? (
+                    {selectedRoadmap ? (
                         <RoadmapPage 
-                            roadmapData={roadmapData} 
+                            roadmapData={selectedRoadmap} 
                             onReset={handleReset} 
                             onLogout={handleLogout}
                             userInfo={userInfo}
                         />
                     ) : (
-                        <Navigate to="/assessment" />
+                        <Navigate to="/roadmap-selection" />
                     )}
                 </ProtectedRoute>
             } />
