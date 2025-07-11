@@ -1,16 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ThreeDMarquee from '../components/3dmarquee';
+import CardSlider from '../components/cardslide';
 
-// This component contains the entire landing page structure.
+const marqueeImages = [
+  { src: '/image/sample1.jpg', alt: 'Sample 1' },
+  { src: '/image/sample2.jpg', alt: 'Sample 2' },
+  { src: '/image/sample3.jpg', alt: 'Sample 3' },
+  { src: '/image/sample4.jpg', alt: 'Sample 4' },
+  { src: '/image/sample5.jpg', alt: 'Sample 5' },
+  { src: '/image/sample6.jpg', alt: 'Sample 6' },
+  { src: '/image/sample7.jpg', alt: 'Sample 7' },
+  { src: '/image/sample8.jpg', alt: 'Sample 8' },
+];
+
+
 export default function LandingPage() {
     return (
         <div className="bg-gray-100 text-gray-800">
             <style>{`
                 html {
                     scroll-behavior: smooth;
-                }
-                .hero-bg {
-                    background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2832&auto=format&fit=crop');
                 }
                 .section-bg-1 {
                     background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2832&auto=format&fit=crop');
@@ -30,25 +40,24 @@ export default function LandingPage() {
                 .fade-in-delay-2 { animation-delay: 0.4s; }
             `}</style>
 
-            {/* Header */}
+
             <header className="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
                 <div className="container mx-auto px-6 py-4 flex justify-between items-center">
                     <h1 className="text-2xl font-bold text-blue-600">BPO Tech Bridge AI</h1>
-                    <nav className="hidden md:flex space-x-8">
-                        <a href="#about" className="text-gray-600 hover:text-blue-600 transition">About</a>
-                        <a href="#features" className="text-gray-600 hover:text-blue-600 transition">Features</a>
-                        <a href="#start" className="text-gray-600 hover:text-blue-600 transition">Get Started</a>
-                    </nav>
+                    
                     <Link to="/login" className="bg-blue-600 text-white font-bold px-6 py-2 rounded-full hover:bg-blue-700 transition-transform transform hover:scale-105">
                         Login
                     </Link>
                 </div>
             </header>
 
-            {/* Hero Section */}
-            <section className="hero-bg bg-cover bg-center h-screen flex items-center justify-center text-white">
-                <div className="absolute inset-0 bg-black/60"></div>
-                <div className="relative text-center p-6 z-10">
+
+            <section className="hero-bg relative h-screen flex items-center justify-center text-white overflow-hidden">
+                <div className="absolute inset-0 w-full h-full z-0">
+                    <ThreeDMarquee images={marqueeImages} className="w-full h-full" />
+                </div>
+                <div className="absolute inset-0 bg-black/60 z-10"></div>
+                <div className="relative text-center p-6 z-20 flex flex-col items-center w-full">
                     <h2 className="text-5xl md:text-7xl font-black leading-tight fade-in [text-shadow:_0_4px_8px_rgb(0_0_0_/_40%)]">
                         Bridge Your BPO Career to the World of Technology
                     </h2>
@@ -61,7 +70,9 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            {/* Section 1: The Problem & Solution */}
+            {/* Card Slider Section */}
+            <CardSlider />
+
             <section id="about" className="relative section-bg-1 bg-cover bg-center py-20 md:py-32">
                 <div className="absolute inset-0 bg-white/80 backdrop-blur-sm"></div>
                 <div className="container mx-auto px-6 relative z-10">
@@ -82,7 +93,7 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            {/* Section 2: How It Works (Features) */}
+
             <section id="features" className="relative section-bg-2 bg-cover bg-center py-20 md:py-32 text-white">
                  <div className="absolute inset-0 bg-slate-900/70 backdrop-blur-sm"></div>
                 <div className="container mx-auto px-6 relative z-10">
@@ -91,7 +102,7 @@ export default function LandingPage() {
                         <p className="mt-4 text-lg opacity-80">We make the transition simple, clear, and supportive.</p>
                     </div>
                     <div className="grid md:grid-cols-3 gap-8">
-                        {/* Step 1 */}
+
                         <div className="bg-white/10 p-8 rounded-2xl border border-white/20 backdrop-blur-lg text-center">
                             <div className="flex items-center justify-center w-16 h-16 mx-auto bg-blue-500 rounded-full mb-6">
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
@@ -99,7 +110,7 @@ export default function LandingPage() {
                             <h4 className="text-2xl font-bold mb-2">AI-Powered Assessment</h4>
                             <p className="opacity-80">Our AI analyzes your BPO job title and a quick logic quiz to identify your core strengths and best-fit tech career paths.</p>
                         </div>
-                        {/* Step 2 */}
+
                         <div className="bg-white/10 p-8 rounded-2xl border border-white/20 backdrop-blur-lg text-center">
                              <div className="flex items-center justify-center w-16 h-16 mx-auto bg-green-500 rounded-full mb-6">
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
@@ -107,7 +118,6 @@ export default function LandingPage() {
                             <h4 className="text-2xl font-bold mb-2">Custom Learning Roadmap</h4>
                             <p className="opacity-80">Receive a personalized, step-by-step learning plan with curated resources from YouTube, TESDA, and more to build your new skills.</p>
                         </div>
-                        {/* Step 3 */}
                         <div className="bg-white/10 p-8 rounded-2xl border border-white/20 backdrop-blur-lg text-center">
                              <div className="flex items-center justify-center w-16 h-16 mx-auto bg-purple-500 rounded-full mb-6">
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2V7a2 2 0 012-2h2m6-4v4m-6 4v4m-6-4v4"></path></svg>
@@ -119,7 +129,7 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            {/* Section 3: Call to Action */}
+ 
             <section id="start" className="bg-gray-100 py-20 md:py-32">
                 <div className="container mx-auto px-6 text-center">
                     <h3 className="text-4xl md:text-5xl font-bold text-gray-900">Ready to Build Your Future?</h3>
@@ -132,7 +142,7 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            {/* Footer */}
+
             <footer className="bg-gray-900 text-white">
                 <div className="container mx-auto px-6 py-8 text-center">
                     <p className="text-lg font-semibold">BPO Tech Bridge AI</p>
