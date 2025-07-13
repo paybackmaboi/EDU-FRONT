@@ -201,10 +201,10 @@ export default function LandingPage() {
 </section>
 </div>
 
-            <footer className="bg-gray-100 text-white">
+            <footer className="bg-gray-25 text-black-100 py-0">
                 <div className="container mx-auto px-6 py-8 text-center">
                     <p className="text-lg font-semibold">BPO Tech Bridge AI</p>
-                    <p className="mt-2 text-sm opacity-60">&copy; 2025 BPO Tech Bridge AI. All Rights Reserved. A Hackathon Project.</p>
+                    <p className="mt-2 text-sm opacity-60">&copy; 2025 BPO Tech Bridge AI. All Rights Reserved.</p>
                     <div className="mt-6 flex justify-center space-x-6">
                         <a href="/" className="opacity-70 hover:opacity-100 transition">Facebook</a>
                         <a href="/" className="opacity-70 hover:opacity-100 transition">Twitter</a>

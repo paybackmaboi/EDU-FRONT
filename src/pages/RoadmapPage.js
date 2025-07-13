@@ -434,7 +434,7 @@ export default function RoadmapPage({ roadmapData, onReset, onLogout, userInfo }
       {/* Tabs */}
       <div className="my-8 border-b-2 border-white/25">
         <div className="flex space-x-2 sm:space-x-4 ">
-          <TabButton tabName="roadmap" iconPath={ICONS.BOOK_OPEN}>My Roadmap</TabButton>
+          <TabButton tabName="roadmap" iconPath={ICONS.BOOK_OPEN} classname="text-white">My Roadmap</TabButton>
           <TabButton tabName="gabay" iconPath={ICONS.CHAT}>Gabay AI</TabButton>
           <TabButton tabName="opportunities" iconPath={ICONS.BRIEFCASE}>Opportunities</TabButton>
           <TabButton tabName="dashboard" iconPath={ICONS.CHART_BAR}>Dashboard</TabButton>
