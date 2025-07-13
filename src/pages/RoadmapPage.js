@@ -63,46 +63,76 @@ function GabayAIChat({ userInfo, careerTitle }) {
     };
 
     return (
-        <div className="flex flex-col h-[60vh] bg-white rounded-lg border-2 border-gray-200 shadow-inner">
-            <div className="flex-1 p-6 space-y-4 overflow-y-auto">
-                {history.length === 0 && (
-                     <div className="text-center text-gray-500 h-full flex flex-col justify-center items-center">
-                        <Icon path={ICONS.CHAT} className="w-16 h-16 mx-auto mb-4 text-gray-300" />
-                        <h3 className="font-semibold text-lg">Talk to Gabay AI</h3>
-                        <p>Ask me anything about your new career path as a {careerTitle}!</p>
-                        <p className="text-sm mt-2">e.g., "What does a typical day look like?"</p>
-                    </div>
-                )}
-                {history.map((msg, index) => (
-                    <div key={index} className={`flex items-end gap-2 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                        {msg.role === 'ai' && <Icon path={ICONS.CHAT} className="w-8 h-8 text-blue-500 bg-gray-200 rounded-full p-1"/>}
-                        <div className={`max-w-xs md:max-w-md p-3 rounded-2xl ${msg.role === 'user' ? 'bg-blue-500 text-white rounded-br-none' : 'bg-gray-200 text-gray-800 rounded-bl-none'}`}>
-                            <p className="text-sm">{msg.text}</p>
-                        </div>
-                    </div>
-                ))}
-                {isLoading && (
-                    <div className="flex justify-start">
-                        <div className="max-w-xs md:max-w-md p-3 rounded-2xl bg-gray-200 text-gray-800">
-                            <div className="flex items-center space-x-2">
-                                <div className="w-2 h-2 bg-gray-500 rounded-full animate-pulse"></div>
-                                <div className="w-2 h-2 bg-gray-500 rounded-full animate-pulse [animation-delay:0.2s]"></div>
-                                <div className="w-2 h-2 bg-gray-500 rounded-full animate-pulse [animation-delay:0.4s]"></div>
-                            </div>
-                        </div>
-                    </div>
-                )}
-                <div ref={chatEndRef} />
-            </div>
-            <form onSubmit={handleSendMessage} className="p-4 border-t-2 border-gray-200">
-                <div className="relative">
-                    <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Ask Gabay AI a question..." className="w-full pr-12 pl-4 py-3 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" disabled={isLoading} />
-                    <button type="submit" disabled={isLoading || !message.trim()} className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 disabled:bg-blue-300 disabled:cursor-not-allowed transition-colors">
-                        <Icon path={ICONS.PAPER_AIRPLANE} className="w-6 h-6" />
-                    </button>
-                </div>
-            </form>
+        <div className="flex flex-col h-[60vh] bg-black/50 rounded-lg shadow-inner backdrop-blur-md">
+  <div className="flex-1 p-6 space-y-4 overflow-y-auto text-white">
+    {history.length === 0 && (
+      <div className="text-center text-gray-300 h-full flex flex-col justify-center items-center">
+        <Icon path={ICONS.CHAT} className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+        <h3 className="font-semibold text-lg">Talk to Gabay AI</h3>
+        <p>Ask me anything about your new career path as a {careerTitle}!</p>
+        <p className="text-sm mt-2 text-gray-400">e.g., "What does a typical day look like?"</p>
+      </div>
+    )}
+
+    {history.map((msg, index) => (
+      <div
+        key={index}
+        className={`flex items-end gap-2 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+      >
+        {msg.role === 'ai' && (
+          <Icon
+            path={ICONS.CHAT}
+            className="w-8 h-8 text-[#14b8a6] bg-black/40 rounded-full p-1"
+          />
+        )}
+        <div
+          className={`max-w-xs md:max-w-md p-3 rounded-2xl ${
+            msg.role === 'user'
+              ? 'bg-[#14b8a6] text-white rounded-br-none'
+              : 'bg-white/10 text-white rounded-bl-none'
+          }`}
+        >
+          <p className="text-sm">{msg.text}</p>
         </div>
+      </div>
+    ))}
+
+    {isLoading && (
+      <div className="flex justify-start">
+        <div className="max-w-xs md:max-w-md p-3 rounded-2xl bg-white/10 text-white">
+          <div className="flex items-center space-x-2">
+            <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse [animation-delay:0.2s]"></div>
+            <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse [animation-delay:0.4s]"></div>
+          </div>
+        </div>
+      </div>
+    )}
+
+    <div ref={chatEndRef} />
+  </div>
+
+  <form onSubmit={handleSendMessage} className="p-4 border-t border-white/10 backdrop-blur-sm">
+    <div className="relative">
+      <input
+        type="text"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        placeholder="Ask Gabay AI a question..."
+        className="w-full pr-12 pl-4 py-3 rounded-full bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#14b8a6]"
+        disabled={isLoading}
+      />
+      <button
+        type="submit"
+        disabled={isLoading || !message.trim()}
+        className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-[#14b8a6] text-white hover:bg-[#0d9488] disabled:bg-[#2dd4bf]/30 disabled:cursor-not-allowed transition-colors"
+      >
+        <Icon path={ICONS.PAPER_AIRPLANE} className="w-6 h-6" />
+      </button>
+    </div>
+  </form>
+</div>
+
     );
 }
 
@@ -280,112 +310,165 @@ export default function RoadmapPage({ roadmapData, onReset, onLogout, userInfo }
     );
 
     const ModuleCard = ({ module, index, isActive, onClick }) => (
-        <div onClick={onClick} className={`p-6 rounded-xl border-2 transition-all duration-300 cursor-pointer ${isActive ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-white hover:border-gray-300'}`}>
-            <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-4">
-                    <div className={`flex items-center justify-center w-12 h-12 rounded-full bg-blue-500 text-white font-bold text-lg`}>
-                        {index + 1}
-                    </div>
-                    <div>
-                        <h3 className="text-xl font-bold text-gray-900">{module.title}</h3>
-                        <p className="text-sm text-gray-500 font-medium">Est. Duration: {module.duration}</p>
-                    </div>
-                </div>
-                {isActive && <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">CURRENT STEP</span>}
+        <div
+  onClick={onClick}
+  className={`p-6 rounded-xl bg-black/50 hover:bg-black/40 transition-all duration-300 cursor-pointer`}
+>
+  <div className="flex items-center justify-between">
+    <div className="flex items-center space-x-4">
+      <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#14b8a6] text-white font-bold text-lg">
+        {index + 1}
+      </div>
+      <div>
+        <h3 className="text-xl font-bold text-white">{module.title}</h3>
+        <p className="text-sm text-gray-300 font-medium">Est. Duration: {module.duration}</p>
+      </div>
+    </div>
+    {isActive && (
+      <span className="bg-[#14b8a6]/20 text-[#14b8a6] text-xs font-semibold px-3 py-1 rounded-full">
+        CURRENT STEP
+      </span>
+    )}
+  </div>
+
+  {isActive && (
+    <div className="mt-6 pl-16 animate-fade-in-up">
+      <h4 className="font-semibold text-white mb-2">Skills you'll learn:</h4>
+      <div className="flex flex-wrap gap-2 mb-4">
+        {module.skills.map((skill) => (
+          <span
+            key={skill}
+            className="bg-white/10 text-white text-xs font-medium px-2.5 py-1 rounded-full"
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+
+      <h4 className="font-semibold text-white mb-3">Recommended Resources:</h4>
+      <div className="space-y-2">
+        {module.resources.map((res) => (
+          <a
+            href={res.url}
+            key={res.name}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between p-3 bg-black/30 hover:bg-black/20 rounded-lg transition-all"
+          >
+            <div className="flex items-center">
+              <Icon path={ICONS.BOOK_OPEN} className="w-5 h-5 mr-3 text-[#14b8a6]" />
+              <span className="font-medium text-white">{res.name}</span>
             </div>
-            {isActive && (
-                <div className="mt-6 pl-16 animate-fade-in-up">
-                    <h4 className="font-semibold text-gray-800 mb-2">Skills you'll learn:</h4>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                        {module.skills.map(skill => (
-                            <span key={skill} className="bg-gray-200 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">{skill}</span>
-                        ))}
-                    </div>
-                    <h4 className="font-semibold text-gray-800 mb-3">Recommended Resources:</h4>
-                    <div className="space-y-2">
-                        {module.resources.map(res => (
-                            <a href={res.url} key={res.name} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 hover:bg-gray-50 hover:shadow-sm transition-all">
-                                <div className="flex items-center">
-                                    <Icon path={ICONS.BOOK_OPEN} className="w-5 h-5 mr-3 text-blue-500" />
-                                    <span className="font-medium text-gray-700">{res.name}</span>
-                                </div>
-                                <div className="flex items-center">
-                                    <span className="text-sm text-gray-500 mr-3">{res.provider}</span>
-                                    <Icon path={ICONS.ARROW_RIGHT} className="w-4 h-4 text-gray-400" />
-                                </div>
-                            </a>
-                        ))}
-                    </div>
-                </div>
-            )}
-        </div>
+            <div className="flex items-center">
+              <span className="text-sm text-gray-300 mr-3">{res.provider}</span>
+              <Icon path={ICONS.ARROW_RIGHT} className="w-4 h-4 text-gray-400" />
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
+</div>
+
     );
 
     return (
-        <div id="roadmap-page" className="min-h-screen bg-gray-100 font-sans">
-             <style>{`
-                .animate-fade-in-up { animation: fadeInUp 0.5s ease-out forwards; opacity: 0; }
-                @keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-            `}</style>
-            <header className="bg-white shadow-sm sticky top-0 z-20">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between items-center py-4">
-                        <div className="text-2xl font-bold text-blue-600">BPO Tech Bridge AI</div>
-                         <div className="flex items-center space-x-4">
-                             <span className="text-sm text-gray-500 hidden sm:block">Welcome, {userInfo.email}</span>
-                             <button onClick={() => navigate('/roadmap-selection')} className="text-sm font-medium text-gray-600 hover:text-blue-600">
-                               Back to Options
-                            </button>
-                            <button onClick={onReset} className="text-sm font-medium text-gray-600 hover:text-blue-600">
-                               Start New Assessment
-                            </button>
-                             <button onClick={onLogout} className="text-sm font-semibold text-blue-600 hover:text-blue-800">Logout</button>
-                        </div>
-                    </div>
-                </div>
-            </header>
-            <main className="py-10">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h1 className="mt-2 text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">{careerTitle}</h1>
-                    <p className="text-lg font-semibold text-gray-700 mt-2">{salary_range_php}</p>
-                    <p className="mt-4 text-lg text-gray-700 max-w-3xl">{description}</p>
-                    <p className="mt-4 text-lg text-gray-700 max-w-3xl font-semibold">{reason}</p>
-                    
-                    <div className="my-8 border-b-2 border-gray-200">
-                        <div className="flex space-x-2 sm:space-x-4">
-                            <TabButton tabName="roadmap" iconPath={ICONS.BOOK_OPEN}>My Roadmap</TabButton>
-                            <TabButton tabName="gabay" iconPath={ICONS.CHAT}>Gabay AI</TabButton>
-                            <TabButton tabName="opportunities" iconPath={ICONS.BRIEFCASE}>Opportunities</TabButton>
-                            <TabButton tabName="dashboard" iconPath={ICONS.CHART_BAR}>Dashboard</TabButton>
-                        </div>
-                    </div>
+        <div id="roadmap-page" className="relative min-h-screen font-sans bg-black overflow-hidden">
+  {/* Gradient Background Blobs */}
+  <div className="absolute inset-0 z-0" style={{ filter: 'blur(10vw)' }}>
+    {/* First gradient blob */}
+    <div
+      className="absolute inset-0 mx-auto"
+      style={{
+        clipPath:
+          'polygon(60% 35%, 45% 30%, 35% 20%, 30% 10%, 20% 15%, 10% 25%, 5% 50%, 20% 60%, 30% 70%, 40% 60%, 50% 65%, 60% 80%, 80% 85%, 90% 70%, 95% 50%, 85% 30%, 70% 20%, 60% 35%)',
+        background: 'linear-gradient(135deg, #3b82f6, #9333ea, #ec4899)',
+        opacity: 0.4,
+      }}
+    ></div>
 
-                    <div className="animate-fade-in-up">
-                        {activeTab === 'roadmap' && (
-                            <div className="space-y-4">
-                               {modules.map((module, index) => (
-                                   <ModuleCard 
-                                        key={index} 
-                                        module={module} 
-                                        index={index}
-                                        isActive={currentModule === index}
-                                        onClick={() => setCurrentModule(index)}
-                                    />
-                                ))}
-                            </div>
-                        )}
-                        {activeTab === 'gabay' && (
-                            <GabayAIChat userInfo={userInfo} careerTitle={careerTitle}/>
-                        )}
-                        {activeTab === 'opportunities' && (
-                            <OpportunitiesHub userInfo={userInfo} careerTitle={careerTitle}/>
-                        )}
-                        {activeTab === 'dashboard' && (
-                            <DashboardHub userInfo={userInfo} />
-                        )}
-                    </div>
-                </div>
-            </main>
+    {/* Second gradient blob */}
+    <div
+      className="absolute inset-0 mx-auto"
+      style={{
+        clipPath:
+          'polygon(70% 40%, 50% 35%, 35% 25%, 25% 10%, 10% 20%, 5% 40%, 10% 60%, 30% 70%, 45% 65%, 60% 75%, 75% 70%, 90% 50%, 85% 30%, 70% 20%, 60% 35%)',
+        background: 'linear-gradient(135deg, #22d3ee, #14b8a6, #84cc16)',
+        transform: 'rotate(180deg)',
+        opacity: 0.5,
+      }}
+    ></div>
+  </div>
+
+
+
+  {/* Header */}
+  <header className="bg-black/80 shadow-sm sticky top-0 z-20 border-b border-white/10 backdrop-blur-md">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex justify-between items-center py-4">
+        <div className="text-2xl font-bold text-teal-400">BPO Tech Bridge AI</div>
+        <div className="flex items-center space-x-4">
+          <span className="text-sm text-white hidden sm:block">Welcome, {userInfo.email}</span>
+          <button onClick={() => navigate('/roadmap-selection')} className="text-sm font-medium text-white hover:text-teal-400">
+            Back to Options
+          </button>
+          <button onClick={onReset} className="text-sm font-medium text-white hover:text-teal-400">
+            Start New Assessment
+          </button>
+          <button onClick={onLogout} className="text-sm font-semibold text-teal-400 hover:text-white">
+            Logout
+          </button>
         </div>
+      </div>
+    </div>
+  </header>
+
+  {/* Main Content */}
+  <main className="relative z-10 py-10">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 className="mt-2 text-4xl font-extrabold text-white tracking-tight sm:text-5xl">{careerTitle}</h1>
+      <p className="text-lg font-semibold text-emerald-300 mt-2">{salary_range_php}</p>
+      <p className="mt-4 text-lg text-gray-300 max-w-3xl">{description}</p>
+      <p className="mt-4 text-lg text-gray-300 max-w-3xl font-semibold">{reason}</p>
+
+      {/* Tabs */}
+      <div className="my-8 border-b-2 border-white/25">
+        <div className="flex space-x-2 sm:space-x-4 ">
+          <TabButton tabName="roadmap" iconPath={ICONS.BOOK_OPEN}>My Roadmap</TabButton>
+          <TabButton tabName="gabay" iconPath={ICONS.CHAT}>Gabay AI</TabButton>
+          <TabButton tabName="opportunities" iconPath={ICONS.BRIEFCASE}>Opportunities</TabButton>
+          <TabButton tabName="dashboard" iconPath={ICONS.CHART_BAR}>Dashboard</TabButton>
+        </div>
+      </div>
+
+<div className="animate-fade-in-up text-white">
+  {activeTab === 'roadmap' && (
+    <div className="space-y-4">
+      {modules.map((module, index) => (
+        <ModuleCard
+          key={index}
+          module={module}
+          index={index}
+          isActive={currentModule === index}
+          onClick={() => setCurrentModule(index)}
+        />
+      ))}
+    </div>
+  )}
+  {activeTab === 'gabay' && (
+    <GabayAIChat userInfo={userInfo} careerTitle={careerTitle} />
+  )}
+  {activeTab === 'opportunities' && (
+    <OpportunitiesHub userInfo={userInfo} careerTitle={careerTitle} />
+  )}
+  {activeTab === 'dashboard' && (
+    <DashboardHub userInfo={userInfo} />
+  )}
+</div>
+
+    </div>
+  </main>
+</div>
+
     );
 }

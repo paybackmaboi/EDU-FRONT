@@ -78,8 +78,10 @@ export default function App() {
             <Route path="/roadmap-selection" element={
                 <ProtectedRoute>
                     <RoadmapSelectionPage
+                        userInfo={userInfo}
                         roadmaps={roadmapOptions}
                         onSelectRoadmap={handleSelectRoadmap}
+                        onReset={handleReset}
                         onLogout={handleLogout}
                     />
                 </ProtectedRoute>

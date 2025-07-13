@@ -4,14 +4,14 @@ import ThreeDMarquee from '../components/3dmarquee';
 import CardSlider from '../components/cardslide';
 
 const marqueeImages = [
-  { src: '/image/sample1.jpg', alt: 'Sample 1' },
-  { src: '/image/sample2.jpg', alt: 'Sample 2' },
-  { src: '/image/sample3.jpg', alt: 'Sample 3' },
-  { src: '/image/sample4.jpg', alt: 'Sample 4' },
-  { src: '/image/sample5.jpg', alt: 'Sample 5' },
-  { src: '/image/sample6.jpg', alt: 'Sample 6' },
-  { src: '/image/sample7.jpg', alt: 'Sample 7' },
-  { src: '/image/sample8.jpg', alt: 'Sample 8' },
+  { src: 'https://ardentnetworks.com.ph/wp-content/uploads/2021/11/viber_image_2021-11-15_18-03-21-288.jpg', alt: 'Sample 1' },
+  { src: 'https://img.freepik.com/premium-photo/happy-smiling-operator-asian-woman-customer-service-agent-with-headsets-working-computer-call-center-talking-with-customer-assisting-resolve-problem-with-her-service-mind_33413-267.jpg?w=740', alt: 'Sample 2' },
+  { src: 'https://www.aceyus.com/wp-content/uploads/2020/07/Contact-Center-Supervisor-Help-662x435.jpg', alt: 'Sample 3' },
+  { src: 'https://media.licdn.com/dms/image/v2/C5612AQG6Z19pnrAmMA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1633520643418?e=2147483647&v=beta&t=-UpMgpBtbcKs8HNGUi8_CztagzqYPqUcbzqIzxlyeHQ', alt: 'Sample 4' },
+  { src: 'https://tse1.mm.bing.net/th/id/OIP.7lCrwulMtEZIme1u9d5vnAAAAA?w=418&h=626&rs=1&pid=ImgDetMain&o=7&rm=3', alt: 'Sample 5' },
+  { src: 'https://solutionweb.dk/wp-content/uploads/2023/08/it-service_002.jpg', alt: 'Sample 6' },
+  { src: 'https://cloudconsole.ph/wp-content/uploads/2025/06/Insourcing-vs-Outsourcing-When-Outsourcing-Might-Not-Be-Ideal.webp', alt: 'Sample 7' },
+  { src: 'https://unity-connect.com/wp-content/uploads/2023/06/Philippines-IT-outsourcing-Featured-Image_2234395689.jpg', alt: 'Sample 8' },
 ];
 
 
@@ -22,11 +22,20 @@ export default function LandingPage() {
                 html {
                     scroll-behavior: smooth;
                 }
+                .hero-bg {
+                    background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2832&auto=format&fit=crop');
+                    background-size: cover;
+                    background-position: center;
+                }
                 .section-bg-1 {
                     background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2832&auto=format&fit=crop');
+                    background-size: cover;
+                    background-position: center;
                 }
                 .section-bg-2 {
                     background-image: url('https://images.unsplash.com/photo-1531297484001-80022131c5a9?q=80&w=2820&auto=format&fit=crop');
+                    background-size: cover;
+                    background-position: center;
                 }
                 @keyframes fadeIn {
                     from { opacity: 0; transform: translateY(20px); }
@@ -38,7 +47,29 @@ export default function LandingPage() {
                 }
                 .fade-in-delay-1 { animation-delay: 0.2s; }
                 .fade-in-delay-2 { animation-delay: 0.4s; }
-            `}</style>
+
+        .gradient-border {.gradient-border {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+    }
+    .gradient-border::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, #6ee7b7, #3b82f6, #9333ea, #f43f5e);
+        z-index: -1;
+        filter: blur(5px);
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+    }
+    .gradient-border:hover::before {
+        transform: scale(1.2);
+    }
+             `}</style>
 
 
             <header className="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
@@ -129,21 +160,48 @@ export default function LandingPage() {
                 </div>
             </section>
 
+
+
+
+
+
+
  
-            <section id="start" className="bg-gray-100 py-20 md:py-32">
-                <div className="container mx-auto px-6 text-center">
-                    <h3 className="text-4xl md:text-5xl font-bold text-gray-900">Ready to Build Your Future?</h3>
-                    <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                        Your skills are valuable. Your potential is limitless. Take the first step today and let our AI guide you to a successful career in technology.
-                    </p>
-                    <Link to="/login" className="mt-10 inline-block bg-blue-600 text-white font-bold text-lg px-10 py-4 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-110 shadow-lg">
-                        Create Your Free Account
-                    </Link>
-                </div>
-            </section>
+<div className="font-primarylw w-screen max-h-screen bg-black">
+<section id="start" className="bg-gray-10 py-20 md:py-32 lex justify-center items-center">
+    <div
+                    className="absolute inset-3 grid overflow-hidden"
+                    style={{ filter: "blur(12vw)" }}
+                >               </div>
 
+     <div
+                        className="absolute inset- max-h-screen"
+                        style={{
+                            clipPath: "polygon(50.9% 37.2%, 43.5% 34.7%, 33.6% 26.1%, 39.2% 10.8%, 26.2% 0.0%, 4.8% 6.4%, 0.0% 30.4%, 20.7% 37.2%, 33.4% 26.3%, 43.2% 34.9%, 45.0% 35.6%, 43.6% 46.4%, 37.8% 59.5%, 21.8% 63.2%, 11.7% 76.1%, 22.9% 91.3%, 47.4% 91.3%, 54.0% 79.0%, 38.0% 59.6%, 43.9% 46.4%, 45.2% 35.5%, 50.9% 37.6%, 56.1% 36.8%, 59.8% 47.6%, 70.3% 61.9%, 87.7% 56.0%, 96.4% 37.4%, 88.6% 15.1%, 63.7% 16.7%, 55.2% 33.6%, 55.9% 36.6%, 50.9% 37.2%)",
+                            background: "linear-gradient(hotpink, red, orange, yellow, hotpink)",
+                            animation: "GradientAnimatedBgTurn 8000ms linear infinite",
+                            opacity: 0.66,
+                        }}
+                    ></div>            
+    <div className="container mx-auto px-6 text-center">
+        
+        
+        <h3 className="text-4xl md:text-5xl font-bold text-gray-100">Ready to Build Your Future?</h3>
+        <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+            Your skills are valuable. Your potential is limitless. Take the first step today and let our AI guide you to a successful career in technology.
+        </p>
+        <Link 
+            to="/login" 
+            className="gradient-border px-10 py-4 mt-10 inline-block rounded-full text-white dark:text-gray-300 text-shadow-md border-[5px] border-transparent cursor-pointer transition-all duration-300 transform hover:scale-105"
+        >
+            Create Your Free Account
+        </Link>
+        
+    </div>
+</section>
+</div>
 
-            <footer className="bg-gray-900 text-white">
+            <footer className="bg-gray-100 text-white">
                 <div className="container mx-auto px-6 py-8 text-center">
                     <p className="text-lg font-semibold">BPO Tech Bridge AI</p>
                     <p className="mt-2 text-sm opacity-60">&copy; 2025 BPO Tech Bridge AI. All Rights Reserved. A Hackathon Project.</p>
