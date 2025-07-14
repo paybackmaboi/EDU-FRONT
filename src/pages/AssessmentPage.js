@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SearchableDropdown from '../components/SearchableDropdown';
 import { ICONS, BPO_JOB_TITLES, QUIZ_QUESTIONS } from '../constants';
 
-const API_URL = 'http://localhost:8000/api';
+const API_URL = 'https://edu-back-3zz4.onrender.com/api';
 
 const Icon = ({ path, className = "w-6 h-6" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
