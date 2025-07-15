@@ -26,7 +26,7 @@ const CardSlider = () => (
             <div
                 className="absolute inset-0 bg-cover bg-center transform transition-transform duration-700 ease-out group-hover:scale-110"
                 style={{
-                    backgroundImage: `url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fdepositphotos.com%2Fvector%2Ffeatures-list-icon-96279150.html&psig=AOvVaw0fURfnqW8fRLzzSr9bDEOq&ust=1752637048378000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCMDgg_n3vY4DFQAAAAAdAAAAABAy")`,
+                   backgroundImage:`url("https://thumbs.dreamstime.com/b/businessman-calculating-invoice-young-calculator-desk-214519186.jpg")`,
                 }}
             ></div>
            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60 transition-opacity duration-700 group-hover:opacity-25"></div>
@@ -43,7 +43,7 @@ const CardSlider = () => (
             <div
                 className="absolute inset-0 bg-cover bg-center transform transition-transform duration-700 ease-out group-hover:scale-110"
                 style={{
-                    backgroundImage: "url('https://images.pexels.com/photos/1001435/pexels-photo-1001435.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+                   backgroundImage: "url('https://canny.io/blog/wp-content/smush-webp/2023/10/Free-roadmaps.png.webp')",
                 }}
             ></div>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60 transition-opacity duration-700 group-hover:opacity-25"></div>
@@ -60,7 +60,7 @@ const CardSlider = () => (
             <div
                 className="absolute inset-0 bg-cover bg-center transform transition-transform duration-700 ease-out group-hover:scale-110"
                 style={{
-                    backgroundImage: "url('https://images.pexels.com/photos/142497/pexels-photo-142497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+                    backgroundImage: "url('https://media.istockphoto.com/id/1489414046/photo/portrait-of-an-attractive-empowered-multiethnic-woman-looking-at-camera-and-charmingly.jpg?s=612x612&w=0&k=20&c=p9-7xtXTjNUUDYJVJmZ2pka98lr2xiFCM1jFLqpgF6Q=')",
                 }}
             ></div> 
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60 transition-opacity duration-700 group-hover:opacity-25"></div>
