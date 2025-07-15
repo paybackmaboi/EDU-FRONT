@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import SearchableDropdown from '../components/SearchableDropdown';
 import { ICONS, BPO_JOB_TITLES, QUIZ_QUESTIONS } from '../constants';
 
-const API_URL = 'https://edu-back-7z2n.onrender.com';
+// --- CORRECTED API URL ---
+const API_URL = 'https://edu-back-7z2n.onrender.com/api';
 
 const Icon = ({ path, className = "w-6 h-6" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
@@ -38,8 +39,7 @@ export default function AssessmentPage({ onAssessmentComplete, userInfo, onLogou
     setAnswers(prev => ({ ...prev, [questionIndex]: answer }));
     setError('');
   };
-
-  // --- ADD THIS FUNCTION TO CALCULATE THE SCORE ---
+ 
   const calculateScore = () => {
     let score = 0;
     QUIZ_QUESTIONS.forEach((question, index) => {
@@ -50,6 +50,7 @@ export default function AssessmentPage({ onAssessmentComplete, userInfo, onLogou
     return score;
   };
 
+
   const handleQuizSubmit = async (e) => {
     e.preventDefault();
     if (Object.keys(answers).length < QUIZ_QUESTIONS.length) {
@@ -58,18 +59,17 @@ export default function AssessmentPage({ onAssessmentComplete, userInfo, onLogou
     }
     setIsLoading(true);
     setError('');
-
-    // --- USE THE CALCULATED SCORE ---
+   
     const score = calculateScore();
 
     try {
+      // --- CORRECTED FETCH URL ---
       const response = await fetch(`${API_URL}/assessments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${userInfo.token}`
         },
-        // --- SEND THE CORRECT SCORE ---
         body: JSON.stringify({ jobTitle: finalJobTitle, quizScore: score })
       });
       const data = await response.json();
