@@ -56,7 +56,7 @@ export default function AuthPage({ onLoginSuccess }) {
         setSuccessMessage('');
         setIsLoading(true);
 
-        const endpoint = authMode === 'login' ? '/users/login' : '/users/register';
+        const endpoint = authMode === 'login' ? '/api/users/login' : '/api/users/register';
 
         try {
             const response = await fetch(`${API_URL}${endpoint}`, {
