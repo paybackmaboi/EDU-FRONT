@@ -2,14 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
 
-// --- Helper Icon Component ---
 const Icon = ({ path, className = "w-6 h-6" }) => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
         <path strokeLinecap="round" strokeLinejoin="round" d={path} />
     </svg>
 );
 
-// --- Constants (normally in a separate file) ---
 const ICONS = {
     CHART_BAR: "M3 13.125C3 12.504 3.504 12 4.125 12h3.75c.621 0 1.125.504 1.125 1.125v6.75c0 .621-.504 1.125-1.125 1.125h-3.75A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-3.75a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125v15.75c0 .621-.504 1.125-1.125 1.125h-3.75a1.125 1.125 0 01-1.125-1.125V4.125z",
     BOOK_OPEN: "M12 6.25a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0V7A.75.75 0 0112 6.25z M12 18.25a.75.75 0 01.75-.75h.01a.75.75 0 010 1.5H12a.75.75 0 01-.75-.75zM12 4.5a3.75 3.75 0 00-3.75 3.75v9A3.75 3.75 0 0012 21a3.75 3.75 0 003.75-3.75V7.5A3.75 3.75 0 0012 4.5z M8.25 7.5a3.75 3.75 0 117.5 0v9a3.75 3.75 0 11-7.5 0v-9z",
@@ -21,7 +19,6 @@ const ICONS = {
 
 const API_URL = 'https://edu-back-3zz4.onrender.com/api';
 
-// --- Sub-component for the Gabay AI Chat ---
 function GabayAIChat({ userInfo, careerTitle }) {
     const [history, setHistory] = useState([]);
     const [message, setMessage] = useState('');
@@ -136,7 +133,6 @@ function GabayAIChat({ userInfo, careerTitle }) {
     );
 }
 
-// --- Sub-component for the Opportunities Hub ---
 function OpportunitiesHub({ userInfo, careerTitle }) {
     const [jobs, setJobs] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -197,7 +193,6 @@ function OpportunitiesHub({ userInfo, careerTitle }) {
     );
 }
 
-// --- NEW: Sub-component for the Dashboard ---
 function DashboardHub({ userInfo }) {
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -224,8 +219,7 @@ function DashboardHub({ userInfo }) {
     if (error) return <div className="text-center text-red-500 p-10">{error}</div>;
     if (!data) return null;
 
-    // A small component for displaying individual stats
-    const StatCard = ({ title, value, color }) => (
+      const StatCard = ({ title, value, color }) => (
         <div className={`bg-white p-4 rounded-lg border-2 border-gray-200 shadow-sm`}>
             <p className="text-sm text-gray-500">{title}</p>
             <p className={`text-3xl font-bold ${color}`}>{value.toLocaleString()}</p>
@@ -291,8 +285,6 @@ function DashboardHub({ userInfo }) {
         </div>
     );
 }
-
-// --- Main RoadmapPage Component ---
 export default function RoadmapPage({ roadmapData, onReset, onLogout, userInfo }) {
     const [activeTab, setActiveTab] = useState('roadmap');
     const { careerTitle, description, reason, modules, salary_range_php } = roadmapData;
@@ -302,7 +294,7 @@ export default function RoadmapPage({ roadmapData, onReset, onLogout, userInfo }
     const TabButton = ({ tabName, iconPath, children }) => (
         <button
             onClick={() => setActiveTab(tabName)}
-            className={`flex items-center space-x-2 px-4 py-2 text-sm font-semibold rounded-md transition-colors ${activeTab === tabName ? 'bg-blue-600 text-white shadow' : 'text-gray-600 hover:bg-gray-200'}`}
+            className={`flex items-center space-x-2 px-4 py-2 text-sm font-semibold rounded-md transition-colors ${activeTab === tabName ? 'bg-white-100 text-teal-400' : 'text-gray-100 hover:bg-gray-10'}`}
         >
             <Icon path={iconPath} className="w-5 h-5"/>
             <span>{children}</span>
@@ -374,9 +366,7 @@ export default function RoadmapPage({ roadmapData, onReset, onLogout, userInfo }
 
     return (
         <div id="roadmap-page" className="relative min-h-screen font-sans bg-black overflow-hidden">
-  {/* Gradient Background Blobs */}
   <div className="absolute inset-0 z-0" style={{ filter: 'blur(10vw)' }}>
-    {/* First gradient blob */}
     <div
       className="absolute inset-0 mx-auto"
       style={{
@@ -435,8 +425,8 @@ export default function RoadmapPage({ roadmapData, onReset, onLogout, userInfo }
       <div className="my-8 border-b-2 border-white/25">
         <div className="flex space-x-2 sm:space-x-4 ">
           <TabButton tabName="roadmap" iconPath={ICONS.BOOK_OPEN} classname="text-white">My Roadmap</TabButton>
-          <TabButton tabName="gabay" iconPath={ICONS.CHAT}>Gabay AI</TabButton>
-          <TabButton tabName="opportunities" iconPath={ICONS.BRIEFCASE}>Opportunities</TabButton>
+          <TabButton tabName="gabay" iconPath={ICONS.CHAT} >Gabay AI</TabButton>
+          <TabButton tabName="opportunities" iconPath={ICONS.BRIEFCASE} >Opportunities</TabButton>
           <TabButton tabName="dashboard" iconPath={ICONS.CHART_BAR}>Dashboard</TabButton>
         </div>
       </div>

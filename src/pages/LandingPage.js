@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ThreeDMarquee from '../components/3dmarquee';
 import CardSlider from '../components/cardslide';
-
+import BorderAnimatedButton from '../components/animatedbutton';
 const marqueeImages = [
   { src: 'https://ardentnetworks.com.ph/wp-content/uploads/2021/11/viber_image_2021-11-15_18-03-21-288.jpg', alt: 'Sample 1' },
   { src: 'https://img.freepik.com/premium-photo/happy-smiling-operator-asian-woman-customer-service-agent-with-headsets-working-computer-call-center-talking-with-customer-assisting-resolve-problem-with-her-service-mind_33413-267.jpg?w=740', alt: 'Sample 2' },
@@ -23,10 +23,12 @@ export default function LandingPage() {
                     scroll-behavior: smooth;
                 }
                 .hero-bg {
-                    background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2832&auto=format&fit=crop');
                     background-size: cover;
                     background-position: center;
                 }
+                .card-bg{
+                background-color:black;
+            }
                 .section-bg-1 {
                     background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2832&auto=format&fit=crop');
                     background-size: cover;
@@ -100,10 +102,9 @@ export default function LandingPage() {
                     </a>
                 </div>
             </section>
-
-            {/* Card Slider Section */}
+            <section className="card-bg">
             <CardSlider />
-
+            </section>
             <section id="about" className="relative section-bg-1 bg-cover bg-center py-20 md:py-32">
                 <div className="absolute inset-0 bg-white/80 backdrop-blur-sm"></div>
                 <div className="container mx-auto px-6 relative z-10">
@@ -161,12 +162,53 @@ export default function LandingPage() {
             </section>
 
 
-
-
-
-
-
- 
+<section id="roadmaps" class="py-20 fade-in">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">BPO Implementation Roadmaps</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Our proven process to integrate BPO services into your operations</p>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="roadmap-item mb-10">
+                            <div class="roadmap-dot"></div>
+                            <h3 class="text-xl font-semibold mb-2">Discovery & Analysis</h3>
+                            <p class="text-gray-600">We analyze your current processes to identify optimization opportunities.</p>
+                        </div>
+                        <div class="roadmap-item mb-10">
+                            <div class="roadmap-dot"></div>
+                            <h3 class="text-xl font-semibold mb-2">Solution Design</h3>
+                            <p class="text-gray-600">Custom BPO solutions tailored to your specific business requirements.</p>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-dot"></div>
+                            <h3 class="text-xl font-semibold mb-2">Pilot Implementation</h3>
+                            <p class="text-gray-600">Small-scale testing to validate the effectiveness of our solutions.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="roadmap-item mb-10">
+                            <div class="roadmap-dot"></div>
+                            <h3 class="text-xl font-semibold mb-2">Process Migration</h3>
+                            <p class="text-gray-600">Seamless transition of your processes to our managed services.</p>
+                        </div>
+                        <div class="roadmap-item mb-10">
+                            <div class="roadmap-dot"></div>
+                            <h3 class="text-xl font-semibold mb-2">Performance Monitoring</h3>
+                            <p class="text-gray-600">Continuous tracking and optimization of service delivery metrics.</p>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-dot"></div>
+                            <h3 class="text-xl font-semibold mb-2">Scaling & Expansion</h3>
+                            <p class="text-gray-600">Growth of services as your business needs evolve over time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
 <div className="font-primarylw w-screen max-h-screen bg-black">
 <section id="start" className="bg-gray-10 py-20 md:py-32 lex justify-center items-center">
     <div
@@ -179,8 +221,8 @@ export default function LandingPage() {
                         style={{
                             clipPath: "polygon(50.9% 37.2%, 43.5% 34.7%, 33.6% 26.1%, 39.2% 10.8%, 26.2% 0.0%, 4.8% 6.4%, 0.0% 30.4%, 20.7% 37.2%, 33.4% 26.3%, 43.2% 34.9%, 45.0% 35.6%, 43.6% 46.4%, 37.8% 59.5%, 21.8% 63.2%, 11.7% 76.1%, 22.9% 91.3%, 47.4% 91.3%, 54.0% 79.0%, 38.0% 59.6%, 43.9% 46.4%, 45.2% 35.5%, 50.9% 37.6%, 56.1% 36.8%, 59.8% 47.6%, 70.3% 61.9%, 87.7% 56.0%, 96.4% 37.4%, 88.6% 15.1%, 63.7% 16.7%, 55.2% 33.6%, 55.9% 36.6%, 50.9% 37.2%)",
                             background: "linear-gradient(hotpink, red, orange, yellow, hotpink)",
-                            animation: "GradientAnimatedBgTurn 8000ms linear infinite",
                             opacity: 0.66,
+                            BorderAnimatedButton
                         }}
                     ></div>            
     <div className="container mx-auto px-6 text-center">
@@ -190,13 +232,16 @@ export default function LandingPage() {
         <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
             Your skills are valuable. Your potential is limitless. Take the first step today and let our AI guide you to a successful career in technology.
         </p>
+        <div className="animated-gradient-border-button px-10 py-4 grid place-content-center rounded-full text-white dark:text-gray-300 text-shadow-md border-[5px] border-transparent cursor-pointer">
+        
         <Link 
             to="/login" 
             className="gradient-border px-10 py-4 mt-10 inline-block rounded-full text-white dark:text-gray-300 text-shadow-md border-[5px] border-transparent cursor-pointer transition-all duration-300 transform hover:scale-105"
+            BorderAnimatedButton
         >
             Create Your Free Account
         </Link>
-        
+        </div>
     </div>
 </section>
 </div>
@@ -213,5 +258,7 @@ export default function LandingPage() {
                 </div>
             </footer>
         </div>
+        
     );
+    
 }
