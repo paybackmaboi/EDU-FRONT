@@ -39,6 +39,17 @@ export default function AssessmentPage({ onAssessmentComplete, userInfo, onLogou
     setError('');
   };
 
+  // --- ADD THIS FUNCTION TO CALCULATE THE SCORE ---
+  const calculateScore = () => {
+    let score = 0;
+    QUIZ_QUESTIONS.forEach((question, index) => {
+      if (answers[index] === question.answer) {
+        score++;
+      }
+    });
+    return score;
+  };
+
   const handleQuizSubmit = async (e) => {
     e.preventDefault();
     if (Object.keys(answers).length < QUIZ_QUESTIONS.length) {
@@ -48,6 +59,9 @@ export default function AssessmentPage({ onAssessmentComplete, userInfo, onLogou
     setIsLoading(true);
     setError('');
 
+    // --- USE THE CALCULATED SCORE ---
+    const score = calculateScore();
+
     try {
       const response = await fetch(`${API_URL}/assessments`, {
         method: 'POST',
@@ -55,7 +69,8 @@ export default function AssessmentPage({ onAssessmentComplete, userInfo, onLogou
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${userInfo.token}`
         },
-        body: JSON.stringify({ jobTitle: finalJobTitle, quizScore: 5 })
+        // --- SEND THE CORRECT SCORE ---
+        body: JSON.stringify({ jobTitle: finalJobTitle, quizScore: score })
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || 'Failed to generate roadmap.');
@@ -170,7 +185,7 @@ export default function AssessmentPage({ onAssessmentComplete, userInfo, onLogou
                   {currentQ.options.map((option) => (
                     <label
                       key={option}
-                      className={`flex items-center p-4 rounded-lg bg-white/20 border-2 transition-all cursor-pointer 
+                      className={`flex items-center p-4 rounded-lg bg-white/20 border-2 transition-all cursor-pointer
                         ${
                           answers[currentQuestion] === option
                             ? 'border-[#14b8a6] bg-[#14b8a6]/20'
