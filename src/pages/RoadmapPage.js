@@ -17,7 +17,8 @@ const ICONS = {
     PAPER_AIRPLANE: "M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
 };
 
-const API_URL = 'https://edu-back-7z2n.onrender.com';
+// --- CORRECTED API URL ---
+const API_URL = 'https://edu-back-7z2n.onrender.com/api';
 
 function GabayAIChat({ userInfo, careerTitle }) {
     const [history, setHistory] = useState([]);
@@ -157,7 +158,7 @@ function OpportunitiesHub({ userInfo, careerTitle }) {
 
     if (isLoading) return <div className="text-center p-10 text-gray-500">Generating relevant job opportunities with AI...</div>;
     if (error) return <div className="text-center text-red-500 p-10">{error}</div>;
-    
+   
     return (
         <div className="space-y-6">
             {jobs.map((job, index) => (
@@ -244,7 +245,7 @@ function DashboardHub({ userInfo }) {
                 <h3 className="font-bold text-lg text-gray-800">AI Predictive Insight</h3>
                 <p className="mt-2 text-gray-600 italic">"{data.predictiveInsight}"</p>
             </div>
-            
+           
             {/* Charts */}
             <div className="bg-white p-6 rounded-lg border-2 border-gray-200">
                 <h3 className="font-bold text-gray-800">BPO Workforce Overview</h3>
